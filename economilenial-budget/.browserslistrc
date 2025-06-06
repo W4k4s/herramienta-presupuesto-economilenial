@@ -1,0 +1,21 @@
+# Configuración de compatibilidad de navegadores para Economilenial Budget
+# Optimizado para performance y compatibilidad moderna
+
+# Navegadores principales con soporte moderno
+> 0.25%
+not dead
+not ie 11
+not op_mini all
+
+# Versiones específicas para WordPress
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Safari versions
+last 2 Edge versions
+
+# Móviles modernos
+iOS >= 12
+Android >= 8
+
+# Configuración para WordPress
+extends @wordpress/browserslist-config

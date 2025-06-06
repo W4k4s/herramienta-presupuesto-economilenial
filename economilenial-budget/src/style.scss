@@ -3,6 +3,8 @@
  * Paleta de colores y tipografía de la marca Economilenial
  */
 
+@use "sass:color";
+
 // === VARIABLES DE MARCA ECONOMILENIAL ===
 // 🎨 PERSONALIZA AQUÍ TUS COLORES DE MARCA
 $primary-color: #37B8AF;      // Teal principal - color marca
@@ -168,7 +170,7 @@ $font-weight-normal: 400;    // Texto normal
         color: white;
         
         &:hover:not(:disabled) {
-            background: darken($primary-color, 10%);
+            background: color.adjust($primary-color, $lightness: -10%);
             transform: translateY(-2px);
         }
     }
@@ -178,7 +180,7 @@ $font-weight-normal: 400;    // Texto normal
         color: $secondary-color;
         
         &:hover:not(:disabled) {
-            background: darken($neutral-medium, 10%);
+            background: color.adjust($neutral-medium, $lightness: -10%);
         }
     }
     
@@ -187,7 +189,7 @@ $font-weight-normal: 400;    // Texto normal
         color: white;
         
         &:hover:not(:disabled) {
-            background: darken($danger-color, 10%);
+            background: color.adjust($danger-color, $lightness: -10%);
         }
     }
     

@@ -4,15 +4,18 @@
   "description": "Plugin de WordPress para gestión de presupuesto mensual con regla 50-30-20",
   "main": "build/index.js",
   "scripts": {
-    "build": "wp-scripts build",
+    "build": "wp-scripts build --webpack-copy-php",
     "dev": "wp-scripts start",
+    "build:analyze": "wp-scripts build --analyze",
     "check-engines": "wp-scripts check-engines",
     "check-licenses": "wp-scripts check-licenses",
     "format": "wp-scripts format",
     "lint:css": "wp-scripts lint-style",
     "lint:js": "wp-scripts lint-js",
     "packages-update": "wp-scripts packages-update",
-    "test": "wp-scripts test-unit-js"
+    "test": "wp-scripts test-unit-js",
+    "audit-fix": "npm audit fix --force",
+    "security-check": "npm audit --audit-level moderate"
   },
   "keywords": [
     "wordpress",
@@ -24,22 +27,34 @@
   "author": "Economilenial",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
-    "@wordpress/scripts": "^26.19.0"
+    "@wordpress/scripts": "^28.8.0"
   },
   "dependencies": {
-    "@wordpress/block-editor": "^12.0.0",
-    "@wordpress/blocks": "^12.0.0",
-    "@wordpress/components": "^25.0.0",
-    "@wordpress/element": "^5.0.0",
-    "@wordpress/i18n": "^4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "recharts": "^2.8.0",
-    "jspdf": "^2.5.1",
-    "lucide-react": "^0.263.1"
+    "@wordpress/block-editor": "^13.8.0",
+    "@wordpress/blocks": "^13.8.0", 
+    "@wordpress/components": "^28.8.0",
+    "@wordpress/element": "^6.8.0",
+    "@wordpress/i18n": "^5.8.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "recharts": "^2.12.7",
+    "jspdf": "^2.5.2"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ],
+  "overrides": {
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "glob": "^10.0.0",
+    "rimraf": "^5.0.0"
   }
 }

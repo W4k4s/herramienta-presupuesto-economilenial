@@ -1,61 +1,49 @@
 #!/bin/bash
 
-# Script de instalación para Economilenial Budget Plugin
-# Ejecutar desde el directorio del plugin
+# Script de instalación mejorado para Economilenial Budget Plugin
 
-echo "🚀 Instalando Economilenial Budget Plugin..."
+echo "🚀 Instalando Economilenial Budget Plugin (Optimizado)..."
 
-# Verificar que Node.js está instalado
+# Verificar dependencias
 if ! command -v node &> /dev/null; then
-    echo "❌ Node.js no está instalado. Por favor instálalo primero."
-    echo "👉 Visita: https://nodejs.org/"
+    echo "❌ Node.js no está instalado"
     exit 1
 fi
 
-# Verificar que npm está instalado
 if ! command -v npm &> /dev/null; then
-    echo "❌ npm no está instalado. Por favor instálalo primero."
+    echo "❌ npm no está instalado"
     exit 1
 fi
 
 echo "✅ Node.js y npm detectados"
 
-# Instalar dependencias
+# Limpiar e instalar
+echo "🧹 Limpiando instalación previa..."
+rm -rf node_modules package-lock.json
+
 echo "📦 Instalando dependencias..."
-npm install
+npm install --legacy-peer-deps
 
-if [ $? -ne 0 ]; then
-    echo "❌ Error instalando dependencias"
-    exit 1
-fi
+# Corregir vulnerabilidades
+echo "🔒 Corrigiendo vulnerabilidades..."
+npm audit fix --force
 
-echo "✅ Dependencias instaladas correctamente"
-
-# Compilar assets
+# Compilar
 echo "🔨 Compilando assets..."
 npm run build
 
 if [ $? -ne 0 ]; then
-    echo "❌ Error compilando assets"
+    echo "❌ Error compilando"
     exit 1
 fi
 
-echo "✅ Assets compilados correctamente"
-
-# Crear directorio build si no existe
-mkdir -p build
-
 echo ""
 echo "🎉 ¡Instalación completada!"
-echo ""
 echo "📋 Próximos pasos:"
-echo "1. Subir la carpeta completa a /wp-content/plugins/"
-echo "2. Activar el plugin en WordPress Admin → Plugins"
-echo "3. Usar el bloque 'Presupuesto Economilenial' en Gutenberg"
-echo "4. O usar el shortcode [economilenial_presupuesto]"
+echo "1. Subir a /wp-content/plugins/"
+echo "2. Activar en WordPress Admin"
+echo "3. ¡Usar el bloque Economilenial!"
 echo ""
-echo "📚 Documentación completa en README.md"
-echo "🎨 Personalizar colores en src/style.scss"
-echo "🌐 Traducir textos en languages/"
-echo ""
-echo "¡Feliz presupuesteo! 💰"
+echo "🛠️ Scripts útiles:"
+echo "   npm run build:analyze  - Analizar bundle"
+echo "   npm run security-check - Verificar seguridad"
