@@ -51,7 +51,6 @@
     }
   },
   "editorScript": "file:./build/index.js",
-  "editorStyle": "file:./build/index.css",
   "script": "file:./build/index.js",
   "style": "file:./build/style-index.css",
   "textdomain": "economilenial-budget"

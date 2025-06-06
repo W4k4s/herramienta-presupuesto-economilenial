@@ -2,6 +2,8 @@
  * Plugin principal simplificado - Economilenial Budget
  */
 
+import './style.scss';
+
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { createElement } from '@wordpress/element';
