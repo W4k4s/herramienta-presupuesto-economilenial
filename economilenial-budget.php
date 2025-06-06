@@ -62,7 +62,7 @@ class EconomileniaBudgetPlugin {
      * Registrar el bloque Gutenberg
      */
     private function register_block() {
-        register_block_type(ECONOMILENIAL_BUDGET_PLUGIN_PATH . 'build', array(
+        register_block_type(ECONOMILENIAL_BUDGET_PLUGIN_PATH . 'block.json', array(
             'render_callback' => array($this, 'render_block')
         ));
     }
