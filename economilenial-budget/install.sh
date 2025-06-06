@@ -1,49 +1,42 @@
 #!/bin/bash
 
-# Script de instalación mejorado para Economilenial Budget Plugin
+echo "🚀 Instalando Economilenial Budget Plugin..."
 
-echo "🚀 Instalando Economilenial Budget Plugin (Optimizado)..."
-
-# Verificar dependencias
+# Verificar Node.js
 if ! command -v node &> /dev/null; then
     echo "❌ Node.js no está instalado"
     exit 1
 fi
 
-if ! command -v npm &> /dev/null; then
-    echo "❌ npm no está instalado"
-    exit 1
-fi
-
 echo "✅ Node.js y npm detectados"
 
-# Limpiar e instalar
-echo "🧹 Limpiando instalación previa..."
-rm -rf node_modules package-lock.json
+# Limpiar instalación previa
+echo "🧹 Limpiando..."
+rm -rf node_modules package-lock.json build/
 
+# Instalar dependencias
 echo "📦 Instalando dependencias..."
 npm install --legacy-peer-deps
 
-# Corregir vulnerabilidades
-echo "🔒 Corrigiendo vulnerabilidades..."
-npm audit fix --force
-
-# Compilar
-echo "🔨 Compilando assets..."
-npm run build
-
 if [ $? -ne 0 ]; then
-    echo "❌ Error compilando"
-    exit 1
+    echo "🔧 Instalación básica..."
+    npm install @wordpress/scripts@latest --save-dev --legacy-peer-deps
+    npm install @wordpress/block-editor@latest @wordpress/blocks@latest @wordpress/components@latest @wordpress/element@latest @wordpress/i18n@latest recharts@latest jspdf@latest --save --legacy-peer-deps
 fi
 
-echo ""
-echo "🎉 ¡Instalación completada!"
-echo "📋 Próximos pasos:"
-echo "1. Subir a /wp-content/plugins/"
-echo "2. Activar en WordPress Admin"
-echo "3. ¡Usar el bloque Economilenial!"
-echo ""
-echo "🛠️ Scripts útiles:"
-echo "   npm run build:analyze  - Analizar bundle"
-echo "   npm run security-check - Verificar seguridad"
+# Compilar
+echo "🔨 Compilando..."
+npm run build || npx wp-scripts build
+
+# Verificar
+if [ -f "build/index.js" ]; then
+    BUNDLE_SIZE=$(wc -c < "build/index.js")
+    BUNDLE_SIZE_KB=$((BUNDLE_SIZE / 1024))
+    echo "✅ Compilado! Bundle: ${BUNDLE_SIZE_KB} KB"
+    echo ""
+    echo "📋 Copiar a WordPress:"
+    echo "cp -r economilenial-budget/ /path/to/wordpress/wp-content/plugins/"
+else
+    echo "❌ Error en compilación"
+    exit 1
+fi

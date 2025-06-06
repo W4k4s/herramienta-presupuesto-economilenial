@@ -1,125 +1,58 @@
 /**
- * Archivo principal del bloque Economilenial Budget
- * Registra el bloque Gutenberg y exporta el componente frontend
+ * Plugin principal simplificado - Economilenial Budget
  */
 
 import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { createElement } from '@wordpress/element';
+import BudgetDemo from './components/BudgetAppSimple';
 
-// Componentes
-import BudgetApp from './components/BudgetApp';
-import BudgetIcon from './components/BudgetIcon';
-
-// Estilos
-import './style.scss';
+// Icono simple
+const budgetIcon = createElement('svg', {
+    width: 24, height: 24, viewBox: '0 0 24 24'
+}, 
+    createElement('circle', { cx: 12, cy: 12, r: 10, fill: '#37B8AF' }),
+    createElement('text', { x: 12, y: 16, textAnchor: 'middle', fill: 'white', fontSize: 12 }, '€')
+);
 
 /**
- * Registrar el bloque Gutenberg
+ * Registrar bloque Gutenberg
  */
 registerBlockType('economilenial/budget', {
     title: __('Presupuesto Economilenial', 'economilenial-budget'),
-    description: __('Herramienta interactiva para gestionar presupuestos mensuales con la regla 50-30-20', 'economilenial-budget'),
+    description: __('Demo de presupuesto con regla 50-30-20', 'economilenial-budget'),
     category: 'widgets',
-    icon: BudgetIcon,
-    keywords: [
-        __('presupuesto', 'economilenial-budget'),
-        __('finanzas', 'economilenial-budget'),
-        __('economilenial', 'economilenial-budget'),
-        __('50-30-20', 'economilenial-budget')
-    ],
-    supports: {
-        html: false,
-        align: ['wide', 'full'],
-        spacing: {
-            margin: true,
-            padding: true
-        }
-    },
-    attributes: {
-        theme: {
-            type: 'string',
-            default: 'default'
-        },
-        showExport: {
-            type: 'boolean',
-            default: true
-        },
-        showTips: {
-            type: 'boolean',
-            default: true
-        }
-    },
+    icon: budgetIcon,
+    keywords: [__('presupuesto', 'economilenial-budget'), __('finanzas', 'economilenial-budget')],
     
-    /**
-     * Editor del bloque (Gutenberg)
-     */
-    edit: function(props) {
-        const { attributes, setAttributes } = props;
-        
-        return (
-            <div className="economilenial-budget-editor">
-                <div className="economilenial-budget-preview">
-                    <h3>{__('Vista previa del Presupuesto Economilenial', 'economilenial-budget')}</h3>
-                    <p>{__('Esta herramienta aparecerá aquí en el frontend', 'economilenial-budget')}</p>
-                    
-                    {/* Controles del bloque */}
-                    <div className="economilenial-budget-controls">
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={attributes.showExport}
-                                onChange={(e) => setAttributes({ showExport: e.target.checked })}
-                            />
-                            {__('Mostrar opciones de exportación', 'economilenial-budget')}
-                        </label>
-                        
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={attributes.showTips}
-                                onChange={(e) => setAttributes({ showTips: e.target.checked })}
-                            />
-                            {__('Mostrar consejos educativos', 'economilenial-budget')}
-                        </label>
-                    </div>
-                </div>
-            </div>
+    edit: function() {
+        return createElement('div', 
+            { 
+                style: { 
+                    padding: '20px', border: '2px dashed #37B8AF', 
+                    borderRadius: '8px', textAlign: 'center' 
+                } 
+            },
+            createElement('h3', {}, __('Vista previa: Presupuesto Economilenial', 'economilenial-budget')),
+            createElement('p', {}, __('Este bloque se mostrará aquí en el frontend', 'economilenial-budget'))
         );
     },
     
-    /**
-     * Frontend del bloque (se renderiza en PHP)
-     */
     save: function() {
-        return null; // Se renderiza dinámicamente en PHP
+        return null; // Renderizado dinámico en PHP
     }
 });
 
 /**
- * Inicializar aplicación React en frontend
+ * Renderizar en frontend
  */
-if (typeof window !== 'undefined') {
-    document.addEventListener('DOMContentLoaded', function() {
-        // Buscar todos los contenedores del presupuesto
-        const containers = document.querySelectorAll('.economilenial-budget-container');
-        
-        containers.forEach(container => {
-            const containerId = container.id;
-            const budgetData = window.economileniaBudgetData?.[containerId];
-            
-            if (budgetData && window.wp?.element) {
-                const { render } = window.wp.element;
-                
-                // Renderizar la aplicación React
-                render(
-                    <BudgetApp 
-                        {...budgetData}
-                        containerId={containerId}
-                    />, 
-                    container
-                );
-            }
-        });
+document.addEventListener('DOMContentLoaded', function() {
+    const containers = document.querySelectorAll('.economilenial-budget-container');
+    
+    containers.forEach(container => {
+        if (window.wp && window.wp.element) {
+            const { render } = window.wp.element;
+            render(createElement(BudgetDemo), container);
+        }
     });
-}
+});
