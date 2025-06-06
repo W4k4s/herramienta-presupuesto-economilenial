@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "economilenial/budget",
+  "version": "1.0.0",
+  "title": "Presupuesto Economilenial",
+  "category": "widgets",
+  "description": "Herramienta interactiva para gestionar presupuestos mensuales con la regla 50-30-20. Incluye alertas inteligentes y exportación.",
+  "keywords": [
+    "presupuesto",
+    "finanzas",
+    "economilenial",
+    "50-30-20",
+    "dinero"
+  ],
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": false,
+      "text": false,
+      "gradients": false
+    }
+  },
+  "attributes": {
+    "theme": {
+      "type": "string",
+      "default": "default"
+    },
+    "showExport": {
+      "type": "boolean",
+      "default": true
+    },
+    "showTips": {
+      "type": "boolean",
+      "default": true
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "example": {
+    "attributes": {
+      "showExport": true,
+      "showTips": true
+    }
+  },
+  "editorScript": "file:./build/index.js",
+  "editorStyle": "file:./build/index.css",
+  "script": "file:./build/index.js",
+  "style": "file:./build/style-index.css",
+  "textdomain": "economilenial-budget"
+}

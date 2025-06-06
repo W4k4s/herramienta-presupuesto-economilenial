@@ -1,0 +1,67 @@
+# Copyright (C) 2024 Economilenial
+# This file is distributed under the same license as the Economilenial Budget plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Economilenial Budget 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/economilenial-budget\n"
+"POT-Creation-Date: 2024-01-01 00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: economilenial-budget.php
+msgid "Cargando herramienta de presupuesto..."
+msgstr ""
+
+#: src/components/BudgetApp.js
+msgid "Tu Presupuesto Economilenial"
+msgstr ""
+
+#: src/components/BudgetApp.js
+msgid "¡Vamos a domar tus gastos con la regla 50-30-20!"
+msgstr ""
+
+# Navegación
+msgid "Ingresos"
+msgstr ""
+
+msgid "Gastos"
+msgstr ""
+
+msgid "Análisis"
+msgstr ""
+
+msgid "Ajustes"
+msgstr ""
+
+msgid "Exportar"
+msgstr ""
+
+# Pasos principales
+msgid "Registra tus Ingresos Mensuales"
+msgstr ""
+
+msgid "Registra tus Gastos por Categorías"
+msgstr ""
+
+msgid "Análisis de tu Presupuesto"
+msgstr ""
+
+msgid "Ajusta tu Presupuesto"
+msgstr ""
+
+msgid "Guardar y Exportar"
+msgstr ""
+
+# Categorías 50-30-20
+msgid "Necesidades (50%)"
+msgstr ""
+
+msgid "Deseos (30%)"
+msgstr ""
+
+msgid "Ahorro e Inversión (20%)"
+msgstr ""
