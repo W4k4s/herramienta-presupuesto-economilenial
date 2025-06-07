@@ -12,13 +12,16 @@
   "author": "Economilenial",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
-    "@wordpress/scripts": "^26.19.0"
+    "@wordpress/scripts": "^30.18.0"
   },
   "dependencies": {
     "@wordpress/block-editor": "^12.26.0",
     "@wordpress/blocks": "^12.26.0",
     "@wordpress/components": "^25.16.0",
     "@wordpress/element": "^5.26.0",
-    "@wordpress/i18n": "^4.57.0"
+    "@wordpress/i18n": "^4.57.0",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
+    "recharts": "^2.15.3"
   }
 }
