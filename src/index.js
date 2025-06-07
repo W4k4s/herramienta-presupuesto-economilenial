@@ -7,7 +7,7 @@ import './style.scss';
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import { createElement } from '@wordpress/element';
-import BudgetDemo from './components/BudgetAppSimple';
+import BudgetApp from './components/BudgetApp';
 
 // Icono simple
 const budgetIcon = createElement('svg', {
@@ -54,7 +54,17 @@ document.addEventListener('DOMContentLoaded', function() {
     containers.forEach(container => {
         if (window.wp && window.wp.element) {
             const { render } = window.wp.element;
-            render(createElement(BudgetDemo), container);
+            const containerId = container.id;
+            const budgetData = window.economileniaBudgetData?.[containerId] || {};
+            
+            render(createElement(BudgetApp, {
+                apiUrl: budgetData.apiUrl,
+                nonce: budgetData.nonce,
+                isLoggedIn: budgetData.isLoggedIn,
+                userId: budgetData.userId,
+                attributes: budgetData.attributes || {},
+                containerId: containerId
+            }), container);
         }
     });
 });
