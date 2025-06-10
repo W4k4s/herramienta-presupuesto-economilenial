@@ -40,11 +40,17 @@ const BudgetAdjustment = ({ budgetData, calculations, onUpdateDistribucion, onNe
      */
     const autoBalance = () => {
         const total = ajustes.necesidades + ajustes.deseos + ajustes.ahorroInversion;
-        const diferencia = 100 - total;
-        
-        // Distribuir la diferencia proporcionalmente
+
+        // Si el total es 0 no es posible calcular un factor de ajuste.
+        // Evitamos dividir por cero restableciendo la distribución ideal
+        // 50‑30‑20 o simplemente abortando la operación.
+        if (total === 0) {
+            setAjustes({ necesidades: 50, deseos: 30, ahorroInversion: 20 });
+            return;
+        }
+
         const factor = 100 / total;
-        
+
         setAjustes({
             necesidades: ajustes.necesidades * factor,
             deseos: ajustes.deseos * factor,
